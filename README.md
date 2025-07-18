@@ -31,24 +31,29 @@ Este projeto foi desenvolvido como solução para o desafio técnico da VR Softw
 
 ```bash
 app/
-├── api/                # Endpoints FastAPI
-│   └── notificar.py
-├── consumers/          # Consumers para filas RabbitMQ
+├── __pycache__/               # Arquivos compilados (.pyc)
+├── consumers/                 # Consumers para filas RabbitMQ
+│   ├── __init__.py
 │   ├── entrada.py
 │   ├── validacao.py
 │   ├── retry.py
 │   └── dlq.py
-├── infra/              # Conexão com RabbitMQ e storage em memória
-│   ├── connection.py
-│   └── store.py
-├── models/             # Esquemas Pydantic de entrada e saída
-│   └── notification.py
-├── services/           # Producers e lógica de reprocessamento
-│   ├── producer.py
-│   └── reprocess.py
-├── runner.py           # Entrypoint dos workers consumidores
-├── main.py             # Entrypoint da API FastAPI
-config.py               # Configurações (RabbitMQ URL)
+├── infra/                     # Conexão com RabbitMQ e armazenamento em memória
+│   ├── __init__.py
+│   ├── connection.py          # Setup de conexão RabbitMQ
+│   ├── publisher.py           # Função para publicar mensagens
+│   ├── store.py               # Armazenamento em memória (dicionário)
+│   ├── config.py              # Configurações do sistema (URLs, variáveis)
+│   ├── main.py                # Entrypoint da API FastAPI
+│   ├── models.py              # Schemas de entrada e saída (Pydantic)
+│   └── runner.py              # Entrypoint dos workers consumidores
+tests/
+├── __init__.py
+└── test_publisher.py          # Teste unitário da publicação de mensagens
+docker-compose.yml             # Orquestração de serviços com Docker
+Dockerfile                     # Imagem da aplicação
+requirements.txt               # Dependências da aplicação
+README.md                      # Documentação do projeto
 ```
 
 ---

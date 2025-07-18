@@ -2,4 +2,9 @@ __pycache__/
 *.py[cod]
 .pytest_cache/
 *.log
+
+# Ignora o docker-compose que contém credenciais
 docker-compose.yml
+
+# Ignora o config.py com possíveis segredos
+app/config.py
